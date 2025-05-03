@@ -1,0 +1,39 @@
+{
+  "windowStates": {
+    "mainWindow": {
+      "x": 406,
+      "y": 390,
+      "width": 150,
+      "height": 150
+    },
+    "lyricsWindow": {
+      "x": 394,
+      "y": 565,
+      "width": 250,
+      "height": 200
+    }
+  },
+  "settings": {
+    "opacity": 1,
+    "radius": 1,
+    "alwaysOnTop": true,
+    "coverSize": 150,
+    "blur": 2.3,
+    "font": "\"Circular Std Book\"",
+    "lyricsOpacity": 1,
+    "lyricsFont": "\"Circular Std Book\"",
+    "showLyricsOnOpen": true,
+    "lyricsColorMode": "smooth-random",
+    "lyricsBlur": 0.9,
+    "lyricsColor": "hsl(159, 69%, 69%, 0.97)",
+    "lyricsColorSpeed": 2,
+    "settingsOpacity": 1,
+    "lyricsFontSize": 1,
+    "titleFontSize": 0.85,
+    "artistFontSize": 0.84,
+    "lyricsLineHeight": 2,
+    "lyricsOpacityText": 1,
+    "lyricsBgOpacity": 0.7,
+    "lyricsTextOpacity": 1
+  }
+}

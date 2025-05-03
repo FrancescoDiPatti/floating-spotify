@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: rgba(35,35,35,0.97);
+      color: #fff;
+      font-family: sans-serif;
+      border-radius: 18px;
+      width: 340px;
+      min-width: 200px;
+      min-height: 300px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      -webkit-app-region: drag;
+      overflow: hidden;
+    }
+    h2, h3, label {
+      -webkit-app-region: drag;
+    }
+    .setting, .row, input, button, select {
+      -webkit-app-region: no-drag;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      overflow-y: auto;
+      max-height: 95vh;
+      height: 95vh;
+      padding-bottom: 16px;
+    }
+    .setting {
+      margin: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 1em;
+      margin-bottom: 2px;
+    }
+    input[type=range] {
+      width: 100%;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .content::-webkit-scrollbar {
+      width: 10px;
+      background: rgba(0,0,0,0.1);
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: rgba(80,80,80,0.4);
+      border-radius: 5px;
+    }
+    .btn {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 16px;
+      outline: none;
+      transition: background 0.2s;
+    }
+    .btn:active {
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h2 style="text-align:center; margin-top:18px;">Settings</h2>
+    <div class="setting">
+      <label for="opacity">Main window opacity: <span id="opacityValue">0.85</span></label>
+      <input type="range" min="0.3" max="1" step="0.01" value="0.85" id="opacity">
+    </div>
+    <div class="setting">
+      <label for="lyricsOpacity">Lyrics window opacity: <span id="lyricsOpacityValue">0.85</span></label>
+      <input type="range" min="0.3" max="1" step="0.01" value="0.85" id="lyricsOpacity">
+    </div>
+    <div class="setting">
+      <label for="settingsOpacity">Settings window opacity: <span id="settingsOpacityValue">0.97</span></label>
+      <input type="range" min="0.3" max="1" step="0.01" value="0.97" id="settingsOpacity">
+    </div>
+    <div class="setting">
+      <label for="radius">Rounded borders: <span id="radiusValue">32</span>px</label>
+      <input type="range" min="0" max="64" step="1" value="32" id="radius">
+    </div>
+    <div class="setting">
+      <label for="blur">General blur: <span id="blurValue">12</span>px</label>
+      <input type="range" min="0" max="32" step="0.1" value="12" id="blur">
+    </div>
+    <div class="setting">
+      <label for="font">General font:</label>
+      <select id="font">
+        <option value="sans-serif">Sans Serif</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+      </select>
+    </div>
+    <div class="setting row">
+      <label for="alwaysOnTop">Always on top</label>
+      <input type="checkbox" id="alwaysOnTop" checked>
+    </div>
+    <hr style="margin:18px 0 10px 0; border:0; border-top:1px solid #333;">
+    <h3 style="text-align:center; margin:0 0 8px 0;">Lyrics</h3>
+    <div class="setting">
+      <label for="lyricsBlur">Lyrics blur: <span id="lyricsBlurValue">2</span>px</label>
+      <input type="range" min="0" max="12" step="0.1" value="2" id="lyricsBlur">
+    </div>
+    <div class="setting">
+      <label for="lyricsFont">Lyrics font:</label>
+      <select id="lyricsFont">
+        <option value="sans-serif">Sans Serif</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+      </select>
+    </div>
+    <div class="setting row">
+      <label for="showLyricsOnOpen">Show lyrics on open</label>
+      <input type="checkbox" id="showLyricsOnOpen">
+    </div>
+    <div class="setting">
+      <label for="lyricsColor">Fixed lyrics color:</label>
+      <input type="range" min="0" max="359" step="1" id="lyricsColorSlider">
+      <span id="lyricsColorPreview" style="display:inline-block;width:32px;height:18px;vertical-align:middle;border-radius:4px;margin-left:8px;"></span>
+      <input type="color" id="lyricsColor" value="#ffffff" style="margin-left:12px;">
+    </div>
+    <div class="setting">
+      <label for="lyricsColorMode">Lyrics color mode:</label>
+      <select id="lyricsColorMode">
+        <option value="fixed">Fixed</option>
+        <option value="random">Random</option>
+        <option value="sequence">Sequence</option>
+        <option value="spotify">Spotify classic</option>
+        <option value="smooth-random">Smooth Random</option>
+      </select>
+    </div>
+    <div class="setting">
+      <label for="lyricsColorSpeed">Color change speed: <span id="lyricsColorSpeedValue">4</span>s</label>
+      <input type="range" min="1" max="10" step="1" value="4" id="lyricsColorSpeed">
+    </div>
+    <div class="setting">
+      <label for="lyricsFontSize">Lyrics text size: <span id="lyricsFontSizeValue">1.1</span>em</label>
+      <input type="range" min="0.7" max="2.5" step="0.01" value="1.1" id="lyricsFontSize">
+    </div>
+    <div class="setting">
+      <label for="titleFontSize">Title text size: <span id="titleFontSizeValue">1.1</span>em</label>
+      <input type="range" min="0.7" max="2.5" step="0.01" value="1.1" id="titleFontSize">
+    </div>
+    <div class="setting">
+      <label for="artistFontSize">Artist text size: <span id="artistFontSizeValue">0.95</span>em</label>
+      <input type="range" min="0.7" max="2.5" step="0.01" value="0.95" id="artistFontSize">
+    </div>
+    <div class="setting">
+      <label for="lyricsLineHeight">Lyrics line spacing: <span id="lyricsLineHeightValue">1.6</span></label>
+      <input type="range" min="1" max="3" step="0.01" value="1.6" id="lyricsLineHeight">
+    </div>
+    <div class="setting row" style="justify-content: flex-end; margin-top: 24px;">
+      <button class="btn" id="closeSettingsBtn">✖️ Close</button>
+    </div>
+  </div>
+  <script>
+    const { ipcRenderer } = require('electron');
+    const opacity = document.getElementById('opacity');
+    const radius = document.getElementById('radius');
+    const alwaysOnTop = document.getElementById('alwaysOnTop');
+    const blur = document.getElementById('blur');
+    const font = document.getElementById('font');
+    const lyricsBlur = document.getElementById('lyricsBlur');
+    const lyricsFont = document.getElementById('lyricsFont');
+    const showLyricsOnOpen = document.getElementById('showLyricsOnOpen');
+    const lyricsColor = document.getElementById('lyricsColor');
+    const lyricsColorMode = document.getElementById('lyricsColorMode');
+    const lyricsColorSpeed = document.getElementById('lyricsColorSpeed');
+    const lyricsOpacity = document.getElementById('lyricsOpacity');
+    const settingsOpacity = document.getElementById('settingsOpacity');
+    const lyricsColorSlider = document.getElementById('lyricsColorSlider');
+    const lyricsColorPreview = document.getElementById('lyricsColorPreview');
+    const lyricsFontSize = document.getElementById('lyricsFontSize');
+    const titleFontSize = document.getElementById('titleFontSize');
+    const artistFontSize = document.getElementById('artistFontSize');
+    const lyricsLineHeight = document.getElementById('lyricsLineHeight');
+
+    opacity.oninput = () => {
+      document.getElementById('opacityValue').textContent = opacity.value;
+      ipcRenderer.send('settings-update', { opacity: parseFloat(opacity.value) });
+    };
+    radius.oninput = () => {
+      document.getElementById('radiusValue').textContent = radius.value;
+      ipcRenderer.send('settings-update', { radius: parseInt(radius.value) });
+    };
+    alwaysOnTop.onchange = () => {
+      ipcRenderer.send('settings-update', { alwaysOnTop: alwaysOnTop.checked });
+    };
+    blur.oninput = () => {
+      document.getElementById('blurValue').textContent = blur.value;
+      ipcRenderer.send('settings-update', { blur: parseFloat(blur.value) });
+    };
+    font.onchange = () => {
+      ipcRenderer.send('settings-update', { font: font.value });
+    };
+    lyricsBlur.oninput = () => {
+      document.getElementById('lyricsBlurValue').textContent = lyricsBlur.value;
+      ipcRenderer.send('settings-update', { lyricsBlur: parseFloat(lyricsBlur.value) });
+    };
+    lyricsFont.onchange = () => {
+      ipcRenderer.send('settings-update', { lyricsFont: lyricsFont.value });
+    };
+    showLyricsOnOpen.onchange = () => {
+      ipcRenderer.send('settings-update', { showLyricsOnOpen: showLyricsOnOpen.checked });
+    };
+    lyricsColor.oninput = () => {
+      lyricsColorPreview.style.background = lyricsColor.value;
+      ipcRenderer.send('settings-update', { lyricsColor: lyricsColor.value });
+    };
+    lyricsColorMode.onchange = () => {
+      ipcRenderer.send('settings-update', { lyricsColorMode: lyricsColorMode.value });
+    };
+    lyricsColorSpeed.oninput = () => {
+      document.getElementById('lyricsColorSpeedValue').textContent = lyricsColorSpeed.value;
+      ipcRenderer.send('settings-update', { lyricsColorSpeed: parseInt(lyricsColorSpeed.value) });
+    };
+    lyricsOpacity.oninput = () => {
+      document.getElementById('lyricsOpacityValue').textContent = lyricsOpacity.value;
+      ipcRenderer.send('settings-update', { lyricsOpacity: parseFloat(lyricsOpacity.value) });
+    };
+    settingsOpacity.oninput = () => {
+      document.getElementById('settingsOpacityValue').textContent = settingsOpacity.value;
+      ipcRenderer.send('settings-update', { settingsOpacity: parseFloat(settingsOpacity.value) });
+    };
+    lyricsColorSlider.oninput = () => {
+      const color = generateRandomLightColorFromHue(lyricsColorSlider.value, 0.97);
+      lyricsColorPreview.style.background = color;
+      ipcRenderer.send('settings-update', { lyricsColor: color });
+    };
+    lyricsFontSize.oninput = () => {
+      document.getElementById('lyricsFontSizeValue').textContent = lyricsFontSize.value;
+      ipcRenderer.send('settings-update', { lyricsFontSize: parseFloat(lyricsFontSize.value) });
+    };
+    titleFontSize.oninput = () => {
+      document.getElementById('titleFontSizeValue').textContent = titleFontSize.value;
+      ipcRenderer.send('settings-update', { titleFontSize: parseFloat(titleFontSize.value) });
+    };
+    artistFontSize.oninput = () => {
+      document.getElementById('artistFontSizeValue').textContent = artistFontSize.value;
+      ipcRenderer.send('settings-update', { artistFontSize: parseFloat(artistFontSize.value) });
+    };
+    lyricsLineHeight.oninput = () => {
+      document.getElementById('lyricsLineHeightValue').textContent = lyricsLineHeight.value;
+      ipcRenderer.send('settings-update', { lyricsLineHeight: parseFloat(lyricsLineHeight.value) });
+    };
+    document.getElementById('closeSettingsBtn').onclick = () => {
+      window.close();
+    };
+    ipcRenderer.on('settings-update', (event, settings) => {
+      if (settings.opacity !== undefined) {
+        opacity.value = settings.opacity;
+        document.getElementById('opacityValue').textContent = settings.opacity;
+      }
+      if (settings.radius !== undefined) {
+        radius.value = settings.radius;
+        document.getElementById('radiusValue').textContent = settings.radius;
+      }
+      if (settings.alwaysOnTop !== undefined) {
+        alwaysOnTop.checked = !!settings.alwaysOnTop;
+      }
+      if (settings.blur !== undefined) {
+        blur.value = settings.blur;
+        document.getElementById('blurValue').textContent = settings.blur;
+      }
+      if (settings.font !== undefined) {
+        font.value = settings.font;
+      }
+      if (settings.lyricsBlur !== undefined) {
+        lyricsBlur.value = settings.lyricsBlur;
+        document.getElementById('lyricsBlurValue').textContent = settings.lyricsBlur;
+      }
+      if (settings.lyricsFont !== undefined) {
+        lyricsFont.value = settings.lyricsFont;
+      }
+      if (settings.showLyricsOnOpen !== undefined) {
+        showLyricsOnOpen.checked = !!settings.showLyricsOnOpen;
+      }
+      if (settings.lyricsColor !== undefined) {
+        if (settings.lyricsColor.startsWith('hsl')) {
+          const h = parseInt(settings.lyricsColor.split('(')[1]);
+          lyricsColorSlider.value = h;
+          lyricsColorPreview.style.background = settings.lyricsColor;
+        } else {
+          lyricsColorPreview.style.background = settings.lyricsColor;
+          lyricsColor.value = settings.lyricsColor;
+        }
+      }
+      if (settings.lyricsColorMode !== undefined) {
+        lyricsColorMode.value = settings.lyricsColorMode;
+      }
+      if (settings.lyricsColorSpeed !== undefined) {
+        lyricsColorSpeed.value = settings.lyricsColorSpeed;
+        document.getElementById('lyricsColorSpeedValue').textContent = settings.lyricsColorSpeed;
+      }
+      if (settings.lyricsOpacity !== undefined) {
+        lyricsOpacity.value = settings.lyricsOpacity;
+        document.getElementById('lyricsOpacityValue').textContent = settings.lyricsOpacity;
+      }
+      if (settings.settingsOpacity !== undefined) {
+        settingsOpacity.value = settings.settingsOpacity;
+        document.getElementById('settingsOpacityValue').textContent = settings.settingsOpacity;
+      }
+      if (settings.lyricsFontSize !== undefined) {
+        lyricsFontSize.value = settings.lyricsFontSize;
+        document.getElementById('lyricsFontSizeValue').textContent = settings.lyricsFontSize;
+      }
+      if (settings.titleFontSize !== undefined) {
+        titleFontSize.value = settings.titleFontSize;
+        document.getElementById('titleFontSizeValue').textContent = settings.titleFontSize;
+      }
+      if (settings.artistFontSize !== undefined) {
+        artistFontSize.value = settings.artistFontSize;
+        document.getElementById('artistFontSizeValue').textContent = settings.artistFontSize;
+      }
+      if (settings.lyricsLineHeight !== undefined) {
+        lyricsLineHeight.value = settings.lyricsLineHeight;
+        document.getElementById('lyricsLineHeightValue').textContent = settings.lyricsLineHeight;
+      }
+    });
+    ipcRenderer.on('system-fonts', (event, fonts) => {
+      const fontSelects = [document.getElementById('font'), document.getElementById('lyricsFont')];
+      const currentFont = font.value;
+      const currentLyricsFont = lyricsFont.value;
+      fontSelects.forEach((select, idx) => {
+        select.innerHTML = '';
+        fonts.forEach(f => {
+          const opt = document.createElement('option');
+          opt.value = f;
+          opt.textContent = f;
+          select.appendChild(opt);
+        });
+      });
+      ipcRenderer.invoke('get-settings').then(settings => {
+        if (settings) {
+          if (settings.font && fonts.includes(settings.font)) font.value = settings.font;
+          else font.value = currentFont;
+          if (settings.lyricsFont && fonts.includes(settings.lyricsFont)) lyricsFont.value = settings.lyricsFont;
+          else lyricsFont.value = currentLyricsFont;
+        }
+      });
+    });
+    function generateRandomLightColorFromHue(hue, opacity) {
+      return `hsl(${hue}, 69%, 69%, ${opacity})`;
+    }
+    document.querySelector('.content').addEventListener('wheel', function(e) {
+      this.scrollTop += e.deltaY;
+    }, { passive: false });
+  </script>
+</body>
+</html>

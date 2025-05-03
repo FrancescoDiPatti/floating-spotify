@@ -1,0 +1,21 @@
+{
+  "name": "floating_spotify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^36.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "font-list": "^1.5.1"
+  }
+}
