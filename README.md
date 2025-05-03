@@ -14,7 +14,7 @@ Now the application main function (Lyrics) is part of a pull request of [lofi](h
 
 ## Requirements
 - Node.js
-- A Spotify Premium
+- A Spotify
 - Register an app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications) to obtain CLIENT_ID and CLIENT_SECRET
 
 ## Installation
