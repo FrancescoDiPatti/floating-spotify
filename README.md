@@ -43,3 +43,7 @@ On first launch, you will be asked to authenticate the application with Spotify.
 - Access tokens are saved locally in `spotify_token.json`.
 - Settings are saved in `settings.json`.
 - The application automatically retrieve lyrics from lrclib.net and communicate with the Spotify APIs.
+
+
+https://github.com/user-attachments/assets/3f276722-72fe-45f4-b407-303ce7d0adb5
+
