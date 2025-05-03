@@ -20,7 +20,7 @@ Now the application main function (Lyrics) is part of a pull request of [lofi](h
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone <repo-url>
+   git clone <https://github.com/FrancescoDiPatti/floating-spotify>
    cd floating_spotify
    ```
 2. Install dependencies:
